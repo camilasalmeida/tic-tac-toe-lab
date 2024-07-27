@@ -62,7 +62,7 @@ function render() {                                                       //** S
 function updateBoard() {                                                 //** STEP 4-b: CREATE A FUNCTION CALLED `UPDATEBOARD`.
     //console.log('Update the board is working!');
 
-    board.forEach((cellValue, index) => {               //????           //** STEP 4-c: IN THE `UPDATEBOARD` FUNCTION, LOOP OVER `BOARD` AND FOR EACH ELEMENT. ??????
+    board.forEach((cellValue, index) => {               //?????           //** STEP 4-c: IN THE `UPDATEBOARD` FUNCTION, LOOP OVER `BOARD` AND FOR EACH ELEMENT. ??????
       const square = squareEls[index];
       square.textContent = cellValue; // Update the text content of the square
   
