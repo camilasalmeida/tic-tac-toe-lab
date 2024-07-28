@@ -1,8 +1,58 @@
+
+
+
+
+
 body {
-    background-color: gainsboro;
-    font-family: system-ui, sans-serif;
-    margin: 0;
+    background: rgb(61, 99, 218);
+    background: radial-gradient(
+        circle,
+            rgb(77, 75, 162) 20%,
+            rgb(231, 85, 224) 45%,
+            rgb(82, 79, 246) 100%
+        );
+        
+        
+    /* font-family: "Press Start 2P", cursive;
+    overflow-x: hidden; */
+
 }
+
+h1 { 
+    font-family: "Press Start 2P", cursive;
+}
+
+#message{
+    font-family:"Bangers", cursive;
+}
+
+
+.container {
+    font-family: "Bangers", cursive;
+}
+
+#reset {
+    font-family: "Press Start 2P", cursive;
+    font-size: 9pt;
+    background: radial-gradient(
+        ellipse,
+            rgb(228, 225, 56) 0%,
+            #e08e0a 45%,
+            rgb(237, 76, 18) 100%
+        );
+}
+
+#reset:hover {
+    background: radial-gradient(
+        circle,
+        hsl(65, 87%, 55%) 0%,
+        hsl(19, 92%, 50%) 55%,
+        hsl(60, 92%, 50%) 100%
+    );
+    cursor: pointer;
+    border: 3px solid rgb(5, 7, 9);
+}
+
 
 .board {
     display: flex;

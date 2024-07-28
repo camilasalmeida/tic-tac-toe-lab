@@ -33,7 +33,7 @@ const resetBtnEl = document.querySelector('#reset');
 
 
 //=>-----------------------------INIT FUNCTION-----------------------------<=
-function init() {                                                                   //** STEP 3-a: CREATE A FUNCTION CALLED `INIT`.
+function init() {                                                                //** STEP 3-a: CREATE A FUNCTION CALLED `INIT`.
     //console.log('Init function is called!.');                                     //** STEP 3-b: CALL A FUNCTION CALLED `INIT`.
     //window.onload = init;                                  
     board = ['', '', '', '', '', '', '', '', ''];                                   //** STEP 3-c: SET THE `BOARD` VARIABLE TO AND ARRAY CONTAINING NINE EMPTY STRINGS('') REPRESENTING EMPTY SQUARES.
@@ -90,7 +90,7 @@ function updateBoard() {                                                        
 function updateMessage() {                                                             //** STEP 4-d: CREATE A FUNCTION CALLED `UPDATEMESSAGE`.
  //console.log('Update Message is working!');
     if (winner === false && tie === false) {                                           //** STEP 4-e: IN `UPDATEMESSAGE`, RENDER A MESSAGE BASED ON THE CURRENT GAME STATE.
-        messageEl.textContent = `Player ${turn}'s turn`;
+        messageEl.textContent = `> Player ${turn}'s turn`;
     } else if (winner === false && tie === true){
         messageEl.textContent = `Its a tie!`;
     } else {
@@ -108,6 +108,7 @@ function handleClick(event) {
        const squareIndex = event.target.id;                                            //**STEP 6-c: OBTAIN THE INDEX OF THE CLICKED SQUARE. TO DO THIS, GET THE INDEX FROM AN ID ASSIGNED TO THE TARGET ELEMENT IN THE HTML. ASSIGN THIS TO A CONSTANT CALLED `squareIndex`.
        //console.log(`Square ${squareIndex} clicked`);
        //console.dir (squareIndex);
+
         
     if (board[squareIndex] !== '' || winner) {                                        //NOTE: THIS LINE CHECKS IF THE MOVE IS VALID. IF THE SQUARE IS ALREADY TAKEN (`board[squareIndex] !== ''`) OR IF THERE IS ALREADY A WINNER (`winner`), THE FUNCTION EXITS AND NOTHING HAPPENS.
         //console.log(`Invalid move: board[${squareIndex}] = ${board[squareIndex]}, winner = ${winner}`);
@@ -204,10 +205,12 @@ function switchPlayerTurn() {                                                   
 //---------------------------END OF FUNCTION PART 8--------------------------<=
 
 
+
 /*----------------------------- Event Listeners -----------------------------*/
 
 squareEls.forEach((squares) => {                                                     //**STEP 6-b: ATTACH AN EVENT LISTENER TO THE GAME BOARD USING ONE OF THE TWO OPTIONS BELOW. THE FIRST IS A STANDART PATH.
     squares.addEventListener('click', handleClick);                                  //**STEP 6-b: OPTION 1: ADD AN EVENT LISTENER TO EACH OF THE EXISTING `squareEls` WITH A LOOP. SET UP THE EVENT LISTENER TO RESPOND TO THE `CLICK` EVENT. THE EVENT LISTENER SHOULD CALL THE `handleClick`FUNCTION YOU CREATED IN STEP 6-A.
 });
 
-resetBtnEl.addEventListener('click', init);
+resetBtnEl.addEventListener('click', resetButtonColor);
+//resetBtnEl.addEventListener('click', init);
