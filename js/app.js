@@ -1,5 +1,6 @@
 /*-------------------------------- Constants --------------------------------*/
 //const square = squareEls[index];
+//const [a, b, c] = combo;
 
 const winningCombos = [                                                               //**STEP 5: IN A CONSTANT CALLED `WINNINGCOMBOS`, DEFINE THE EIGHT POSSIBLE WINNING COMBINATIONS AS AN ARRAY OF ARRAYS.
 [0, 1, 2], //1
@@ -26,7 +27,7 @@ const squareEls = document.querySelectorAll('.sqr');                            
 //console.dir(squareEls);
 const messageEl = document.querySelector('#message');
 //console.dir(messageEl);
-
+const resetBtnEl = document.querySelector('#reset');
 
 /*-------------------------------- Functions--------------------------------*/
 
@@ -83,6 +84,7 @@ function updateBoard() {                                                        
 
 
 
+
 //-------------------------------FUNCTION UPDATEMESSAGE-----------------------------<= 
 function updateMessage() {                                                             //** STEP 4-d: CREATE A FUNCTION CALLED `UPDATEMESSAGE`.
  //console.log('Update Message is working!');
@@ -99,7 +101,6 @@ function updateMessage() {                                                      
 
 
 //---------------------------FUNCTION HANDLECLICK-----------------------------<= 
-
 function handleClick(event) {    
     //console.log('handleClick function called');                                      //**STEP 6-a: CREATE A FUNCTION CALLED `HANDLECLICK`. IT WILL HAVE AN PARAMETER.
        const squareIndex = event.target.id;                                            //**STEP 6-c: OBTAIN THE INDEX OF THE CLICKED SQUARE. TO DO THIS, GET THE INDEX FROM AN ID ASSIGNED TO THE TARGET ELEMENT IN THE HTML. ASSIGN THIS TO A CONSTANT CALLED `squareIndex`.
@@ -112,36 +113,105 @@ function handleClick(event) {
 }
                                                                                         //NOTE: ????? IF THE MOVE IS VALID (THE SQUARE IS EMPTY AND THERE IS NO WINNER), IT UPDATES THE `board`ARRAY WITH THE CURRENT PLAYER'S SYMBOL AT THE CLICKED SQUARE'S POSITION.
 
-
     placePiece(squareIndex);                                                            //**STEP 6-1-c: IN THE `handleCLick` FUNCTION, CALL THE placePiece FUNCTION YOU JUST CREATE. PASS `squareIndex` TO IT AS AN ARGUMENT.
     //console.log(board);
+
+    checkForWinner();                                                                   //**STEP 6-2-c: IN THE `handleClick` FUNCTION, CALL THE `checkforWinner` FUNCTION IMMEDIATELY AFTER CALLING THE `placePiece` FUNCTION.
+    //console.log('Checking for winner state!');
+
+    checkForTie();
+    
                                                                 
-    if (checkWinner(turn)) {                                                           //NOTE: THIS LINE CHECKS FOR A WINNER. 
+    if (checkForWinner(turn)) {                                                           //NOTE: THIS LINE CHECKS FOR A WINNER. 
         winner = true;
-    } else if (board.every(cell => cell != '')) {
+    } else if (checkForTie()) {                                         //NOTE: //(board.every(cell => cell != ''))
         tie = true;
     } else {
-        turn = turn === 'X' ? '0' : 'X';
+        switchPlayerTurn();
+        //turn = turn === 'X' ? '0' : 'X';
     }
     render();
     }        
 //---------------------------END OF FUNCTION PART 5--------------------------<=
     
 
+
+
+
+
 //---------------------------FUNCTION PLACEPIECE-----------------------------<= 
 function placePiece(index) {                                                         //**STEP 6-1-a: CREATE A FUNCTION NAMED `placePiece`, THAT ACCEPTS AND index PARAMETER.                                      
     board[index] = turn;                                                             //**STEP 6-1-b: UPDATE THE `board` ARRAY AT THE index, SO THAT IT IS EQUAL TO THE CURRENT VALUE OF `turn`.
     //console.log(`Placed ${turn} at index ${index}`);
 }
+//---------------------------END OF FUNCTION PART 6----------------------------<=
 
+
+
+
+
+
+//--------------------------FUNCTION CHECK FOR WINNER-----------------------------<= 
+function checkForWinner() {                                                           //**STEP 6-2-a: CREAT A FUNCTION CALLED `CHECKFOR WINNER`.
+    //console.log('Will we have a winner?!');
+    for (let combo of winningCombos) {                                                 //**STEP 6-2-b: DETERMINE IF A PLAYER HAS WON! OPTION2: THIS METHOD TAKES ADVANTAGE OF THE `winningCombos` ARRAY YOU WROTE IN STEP 5.
+        const [a, b, c] = combo;                                                       //**STEP 6-2-b: LOOP THROUGH EACH OF THE WINNING COMBINATION ARRAYS DEFINED IN THE `winningCombos`ARRAY. USE THE THREE VALUES IN EACH WINNING COMBINATION TO RETRIEVE THE VALUES HELD IN THOSE INDEX POSITIONS OF THE `board` ARRAY.
+
+
+        if (board[a] !== '' && board[a] === board[b] && board[a] === board [c]){
+            return true;
+        }
+    }
+    return false;
+}
 //---------------------------END OF FUNCTION PART 6--------------------------<=
 
 
 
 
+
+//--------------------------FUNCTION CHECK FOR TIE-----------------------------<=
+function checkForTie () {                                                            //**STEP 6-3-a: CREATE A FUNCTION NAMED checkFortie().
+       //console.log('Checking for a tie is working!.');                             //**STEP 6-3-b: CHECK IF THERE IS A WINNER. IF THERE IS, RETURN OUT OF THE FUNCTION.
+          if (winner) {                                                              //NOTE: THIS FUNCTION CHECKS IF THERE IS A WINNER. IF THERE IS A WINNER, IT RETURNS `FALSE`, BECAUSE A TIE IS NOT POSSIBLE IF THERE IS A WINNER.
+            return;
+          }   
+                                                                                      
+    if (board.every(cell => cell != '')) {                                           //NOTE: IF THERE IS NO WINNER, THIS LINE CHECKS CHECKS IF ALL CELLS IN THE BOARD ARE FILLED. IF CELLS ARE FILLED AND THERE IS NO WINNER, IT RETURNS `TRUE`, INDICATING A TIE.
+        tie = true;                             
+    } else {
+        tie = false;
+    }                                       
+    //console.log(`Tie status: ${tie}`);
+}
+
+//---------------------------END OF FUNCTION PART 7--------------------------<=
+
+
+
+//---------------------------FUNCTION SWITCHPLAYERTURN()---------------------<= 
+function switchPlayerTurn() {                                                     //**STEP 6-4-a: CREATE A FUNCTION CALLED `SWITCHPLAYERTURN`.
+    if (winner === true) {                                                       //**STEP 6-4-b: IF `winner` IS TRUE, RETURN OUT OF THE FUNCTION - WE DONT NEED TO SWITCH THE TURN ANYMORE BECAUSE THE PERSON THAT JUST PLAY WON!
+            return;                                                 
+        }                  
+        
+        if (turn === 'X') {                                                         //**STEP 6-4-c: IF `winner` IS FALSE, CHANGE THE TURN BY CHECKING THE CURRENT VALUE OF turn. IF ITS 'X' THEN CHANGE turn TO 'O'. IF ITS 'O', THEN CHANGE turn TO 'X'.
+            turn = 'O';
+         } else {
+            turn = 'X';
+         }
+        // OR turn = turn === 'X' ? '0' : 'X';                                       //NOTE: THIS LINE IS A CONCISE WAY TO SWITCH THE PLAYER'S TURN BETWEEN 'X' AND 'O'. THIS IS KNOW AS THE CONDITIONAL (TERNARY) OPERATOR IN JAVASCRIPT.
+        //console.log(`Turn have changed!`);                                  //NOTE: `turn === 'X'` THIS CHECKS IF THE CURRENT VALUE OF `turn`IS 'X'. IF turn is 'X', THE CONDITION EVALUATES TO 'true`. IF `turn` IS NOT 'X' (MEANING IT MUST BE 'O' IN THIS CONTEXT), THE CONDITION EVALUATES TO `false`.
+        }
+
+
+//---------------------------END OF FUNCTION PART 8--------------------------<=
+
+
 /*----------------------------- Event Listeners -----------------------------*/
 
 squareEls.forEach((squares) => {                                                    //**STEP 6-b: ATTACH AN EVENT LISTENER TO THE GAME BOARD USING ONE OF THE TWO OPTIONS BELOW. THE FIRST IS A STANDART PATH.
-    squares.addEventListener('click', handleClick);                                //**STEP 6-b: OPTION 1: ADD AN EVENT LISTENER TO EACH OF THE EXISTING `squareEls` WITH A LOOP. SET UP THE EVENT LISTENER TO RESPOND TO THE `CLICK` EVENT. THE EVENT LISTENER SHOULD CALL THE `handleClick`FUNCTION YOU CREATED IN STEP 6-A.
+    squares.addEventListener('click', handleClick);                                  //**STEP 6-b: OPTION 1: ADD AN EVENT LISTENER TO EACH OF THE EXISTING `squareEls` WITH A LOOP. SET UP THE EVENT LISTENER TO RESPOND TO THE `CLICK` EVENT. THE EVENT LISTENER SHOULD CALL THE `handleClick`FUNCTION YOU CREATED IN STEP 6-A.
 });
 
+resetBtnEl.addEventListener('click', init);
