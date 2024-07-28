@@ -132,7 +132,7 @@ function handleClick(event) {
     }
     render();
     }        
-//---------------------------END OF FUNCTION PART 5--------------------------<=
+//---------------------------END OF FUNCTION PART 5-------------------------<=
     
 
 
