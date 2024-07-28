@@ -31,6 +31,7 @@ const resetBtnEl = document.querySelector('#reset');
 
 /*-------------------------------- Functions--------------------------------*/
 
+
 //=>-----------------------------INIT FUNCTION-----------------------------<=
 function init() {                                                                   //** STEP 3-a: CREATE A FUNCTION CALLED `INIT`.
     //console.log('Init function is called!.');                                       //** STEP 3-b: CALL A FUNCTION CALLED `INIT`.
@@ -42,8 +43,7 @@ function init() {                                                               
 
     render();                                                                       //** STEP 3-g: CALL A FUNCTION CALLED `RENDER`.
 }                                
- 
-window.onload = init;  //???shoul I just type init();  or the event windown.load?    //NOTES: EVENT USED TO CALL THE `FUNCTION` WHEN THE WINDOW LOADS.
+init();                                                                            //NOTES: EVENT USED TO CALL THE `FUNCTION` WHEN THE WINDOW LOADS.
 //----------------------------END OF FUNCTION PART 1--------------------------<= 
 
 
@@ -56,6 +56,7 @@ function render() {                                                             
     updateMessage();                                                                 //** STEP 4-f INVOKE BOTH THE updateBoard AND THE updateMessage FUNCTIONS INSIDE OF YOUR `RENDER` FUNCTIONS.
 }
 //--------------------------END OF FUNCTION PART 2--------------------------<= 
+
 
 
 
@@ -85,7 +86,7 @@ function updateBoard() {                                                        
 
 
 
-//-------------------------------FUNCTION UPDATEMESSAGE-----------------------------<= 
+//-------------------------------FUNCTION UPDATEMESSAGE-------------------------<= 
 function updateMessage() {                                                             //** STEP 4-d: CREATE A FUNCTION CALLED `UPDATEMESSAGE`.
  //console.log('Update Message is working!');
     if (winner === false && tie === false) {                                           //** STEP 4-e: IN `UPDATEMESSAGE`, RENDER A MESSAGE BASED ON THE CURRENT GAME STATE.
@@ -97,6 +98,7 @@ function updateMessage() {                                                      
     }
     }
 //---------------------------END OF FUNCTION PART 4--------------------------<= 
+
 
 
 
@@ -124,7 +126,7 @@ function handleClick(event) {
                                                                 
     if (checkForWinner(turn)) {                                                           //NOTE: THIS LINE CHECKS FOR A WINNER. 
         winner = true;
-    } else if (checkForTie()) {                                         //NOTE: //(board.every(cell => cell != ''))
+    } else if (checkForTie()) {                                                           //NOTE: //(board.every(cell => cell != ''))
         tie = true;
     } else {
         switchPlayerTurn();
@@ -137,16 +139,12 @@ function handleClick(event) {
 
 
 
-
-
 //---------------------------FUNCTION PLACEPIECE-----------------------------<= 
 function placePiece(index) {                                                         //**STEP 6-1-a: CREATE A FUNCTION NAMED `placePiece`, THAT ACCEPTS AND index PARAMETER.                                      
     board[index] = turn;                                                             //**STEP 6-1-b: UPDATE THE `board` ARRAY AT THE index, SO THAT IT IS EQUAL TO THE CURRENT VALUE OF `turn`.
     //console.log(`Placed ${turn} at index ${index}`);
 }
 //---------------------------END OF FUNCTION PART 6----------------------------<=
-
-
 
 
 
@@ -165,7 +163,6 @@ function checkForWinner() {                                                     
     return false;
 }
 //---------------------------END OF FUNCTION PART 6--------------------------<=
-
 
 
 
@@ -189,28 +186,27 @@ function checkForTie () {                                                       
 
 
 
+
 //---------------------------FUNCTION SWITCHPLAYERTURN()---------------------<= 
-function switchPlayerTurn() {                                                     //**STEP 6-4-a: CREATE A FUNCTION CALLED `SWITCHPLAYERTURN`.
-    if (winner === true) {                                                       //**STEP 6-4-b: IF `winner` IS TRUE, RETURN OUT OF THE FUNCTION - WE DONT NEED TO SWITCH THE TURN ANYMORE BECAUSE THE PERSON THAT JUST PLAY WON!
+function switchPlayerTurn() {                                                       //**STEP 6-4-a: CREATE A FUNCTION CALLED `SWITCHPLAYERTURN`.
+    if (winner === true) {                                                          //**STEP 6-4-b: IF `winner` IS TRUE, RETURN OUT OF THE FUNCTION - WE DONT NEED TO SWITCH THE TURN ANYMORE BECAUSE THE PERSON THAT JUST PLAY WON!
             return;                                                 
         }                  
         
-        if (turn === 'X') {                                                         //**STEP 6-4-c: IF `winner` IS FALSE, CHANGE THE TURN BY CHECKING THE CURRENT VALUE OF turn. IF ITS 'X' THEN CHANGE turn TO 'O'. IF ITS 'O', THEN CHANGE turn TO 'X'.
+        if (turn === 'X') {                                                          //**STEP 6-4-c: IF `winner` IS FALSE, CHANGE THE TURN BY CHECKING THE CURRENT VALUE OF turn. IF ITS 'X' THEN CHANGE turn TO 'O'. IF ITS 'O', THEN CHANGE turn TO 'X'.
             turn = 'O';
          } else {
             turn = 'X';
          }
         // OR turn = turn === 'X' ? '0' : 'X';                                       //NOTE: THIS LINE IS A CONCISE WAY TO SWITCH THE PLAYER'S TURN BETWEEN 'X' AND 'O'. THIS IS KNOW AS THE CONDITIONAL (TERNARY) OPERATOR IN JAVASCRIPT.
-        //console.log(`Turn have changed!`);                                  //NOTE: `turn === 'X'` THIS CHECKS IF THE CURRENT VALUE OF `turn`IS 'X'. IF turn is 'X', THE CONDITION EVALUATES TO 'true`. IF `turn` IS NOT 'X' (MEANING IT MUST BE 'O' IN THIS CONTEXT), THE CONDITION EVALUATES TO `false`.
+        //console.log(`Turn have changed!`);                                         //NOTE: `turn === 'X'` THIS CHECKS IF THE CURRENT VALUE OF `turn`IS 'X'. IF turn is 'X', THE CONDITION EVALUATES TO 'true`. IF `turn` IS NOT 'X' (MEANING IT MUST BE 'O' IN THIS CONTEXT), THE CONDITION EVALUATES TO `false`.
         }
-
-
 //---------------------------END OF FUNCTION PART 8--------------------------<=
 
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-squareEls.forEach((squares) => {                                                    //**STEP 6-b: ATTACH AN EVENT LISTENER TO THE GAME BOARD USING ONE OF THE TWO OPTIONS BELOW. THE FIRST IS A STANDART PATH.
+squareEls.forEach((squares) => {                                                     //**STEP 6-b: ATTACH AN EVENT LISTENER TO THE GAME BOARD USING ONE OF THE TWO OPTIONS BELOW. THE FIRST IS A STANDART PATH.
     squares.addEventListener('click', handleClick);                                  //**STEP 6-b: OPTION 1: ADD AN EVENT LISTENER TO EACH OF THE EXISTING `squareEls` WITH A LOOP. SET UP THE EVENT LISTENER TO RESPOND TO THE `CLICK` EVENT. THE EVENT LISTENER SHOULD CALL THE `handleClick`FUNCTION YOU CREATED IN STEP 6-A.
 });
 
