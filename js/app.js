@@ -34,7 +34,7 @@ const resetBtnEl = document.querySelector('#reset');
 
 //=>-----------------------------INIT FUNCTION-----------------------------<=
 function init() {                                                                   //** STEP 3-a: CREATE A FUNCTION CALLED `INIT`.
-    //console.log('Init function is called!.');                                       //** STEP 3-b: CALL A FUNCTION CALLED `INIT`.
+    //console.log('Init function is called!.');                                     //** STEP 3-b: CALL A FUNCTION CALLED `INIT`.
     //window.onload = init;                                  
     board = ['', '', '', '', '', '', '', '', ''];                                   //** STEP 3-c: SET THE `BOARD` VARIABLE TO AND ARRAY CONTAINING NINE EMPTY STRINGS('') REPRESENTING EMPTY SQUARES.
     turn = 'X';                                                                     //** STEP 3-d: SET THE `TURN` TO `X`. PLAYER X.
