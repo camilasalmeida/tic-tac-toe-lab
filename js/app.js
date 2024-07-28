@@ -137,6 +137,8 @@ function placePiece(index) {                                             //**STE
 //---------------------------END OF FUNCTION PART 6--------------------------<=
 
 
+
+
 /*----------------------------- Event Listeners -----------------------------*/
 
 squareEls.forEach((squares) => {                                        //**STEP 6-b: ATTACH AN EVENT LISTENER TO THE GAME BOARD USING ONE OF THE TWO OPTIONS BELOW. THE FIRST IS A STANDART PATH.
