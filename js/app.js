@@ -129,8 +129,8 @@ function handleClick(event) {
     
 
 //---------------------------FUNCTION PLACEPIECE-----------------------------<= 
-function placePiece(index) {                                             //**STEP 6-1-a: CREATE A FUNCTION NAMED `placePiece`, THAT ACCEPTS AND index PARAMETER.                                      
-    board[index] = turn;                                                 //**STEP 6-1-b: UPDATE THE `board` ARRAY AT THE index, SO THAT IT IS EQUAL TO THE CURRENT VALUE OF `turn`.
+function placePiece(index) {                                                         //**STEP 6-1-a: CREATE A FUNCTION NAMED `placePiece`, THAT ACCEPTS AND index PARAMETER.                                      
+    board[index] = turn;                                                             //**STEP 6-1-b: UPDATE THE `board` ARRAY AT THE index, SO THAT IT IS EQUAL TO THE CURRENT VALUE OF `turn`.
     //console.log(`Placed ${turn} at index ${index}`);
 }
 
@@ -141,7 +141,7 @@ function placePiece(index) {                                             //**STE
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-squareEls.forEach((squares) => {                                        //**STEP 6-b: ATTACH AN EVENT LISTENER TO THE GAME BOARD USING ONE OF THE TWO OPTIONS BELOW. THE FIRST IS A STANDART PATH.
-    squares.addEventListener('click', handleClick);                     //**STEP 6-b: OPTION 1: ADD AN EVENT LISTENER TO EACH OF THE EXISTING `squareEls` WITH A LOOP. SET UP THE EVENT LISTENER TO RESPOND TO THE `CLICK` EVENT. THE EVENT LISTENER SHOULD CALL THE `handleClick`FUNCTION YOU CREATED IN STEP 6-A.
+squareEls.forEach((squares) => {                                                    //**STEP 6-b: ATTACH AN EVENT LISTENER TO THE GAME BOARD USING ONE OF THE TWO OPTIONS BELOW. THE FIRST IS A STANDART PATH.
+    squares.addEventListener('click', handleClick);                                //**STEP 6-b: OPTION 1: ADD AN EVENT LISTENER TO EACH OF THE EXISTING `squareEls` WITH A LOOP. SET UP THE EVENT LISTENER TO RESPOND TO THE `CLICK` EVENT. THE EVENT LISTENER SHOULD CALL THE `handleClick`FUNCTION YOU CREATED IN STEP 6-A.
 });
 
