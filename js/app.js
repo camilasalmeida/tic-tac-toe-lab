@@ -68,15 +68,15 @@ function updateBoard() {                                                        
       const square = squareEls[index];                                               //NOTE: `squareEls[index]`, RETRIEVES THE SQUARE ELEMENT THAT CORRESPONDS TO THE CURRENT INDEX OF THE LOOP.
       square.textContent = cellValue;                                                //NOTE: THIS LINE OF CODE, SETS THE TEXT CONTENT OF THE SQUARE ELEMENT TO THE VALUE OF `CELLVALUE, IF `CELLVALUE` IS X, O OR AN EMPTY STRING, THE SQUARE'S TEXT WILL BE UPDATED ACCORDINGLY. Update the text content of the square
 
-      // Optional: Add any additional styling based on the cell value
+      
       if (cellValue === 'X') {
-        square.style.color = 'red';
-        square.style.background = 'pink';
+        square.style.color = '#FFFF00';
+        square.style.background = '#FF00FF';
       } else if (cellValue === 'O') {
-        square.style.color = 'blue';
-        square.style.background = 'lightblue';
+        square.style.color = '#ADFF2F';
+        square.style.background = '#00FFFF';
       } else {
-        square.style.color = 'black'; // Default style for empty squares
+        square.style.color = 'black'; 
         square.style.background = 'white';
     }
     });
@@ -90,11 +90,11 @@ function updateBoard() {                                                        
 function updateMessage() {                                                             //** STEP 4-d: CREATE A FUNCTION CALLED `UPDATEMESSAGE`.
  //console.log('Update Message is working!');
     if (winner === false && tie === false) {                                           //** STEP 4-e: IN `UPDATEMESSAGE`, RENDER A MESSAGE BASED ON THE CURRENT GAME STATE.
-        messageEl.textContent = `> Player ${turn}'s turn`;
+        messageEl.innerHTML = `> Player ${turn}'s turn`;
     } else if (winner === false && tie === true){
-        messageEl.textContent = `Its a tie!`;
+        messageEl.textContent = `Its a tie! `;
     } else {
-        messageEl.textContent = `Congratulations! Player ${turn} wins`;
+        messageEl.textContent = `Congratulations! Player ${turn} wins!  🏆 `;
     }
     }
 //---------------------------END OF FUNCTION PART 4--------------------------<= 
@@ -212,5 +212,5 @@ squareEls.forEach((squares) => {                                                
     squares.addEventListener('click', handleClick);                                  //**STEP 6-b: OPTION 1: ADD AN EVENT LISTENER TO EACH OF THE EXISTING `squareEls` WITH A LOOP. SET UP THE EVENT LISTENER TO RESPOND TO THE `CLICK` EVENT. THE EVENT LISTENER SHOULD CALL THE `handleClick`FUNCTION YOU CREATED IN STEP 6-A.
 });
 
-resetBtnEl.addEventListener('click', resetButtonColor);
-//resetBtnEl.addEventListener('click', init);
+resetBtnEl.addEventListener('click', init);
+
