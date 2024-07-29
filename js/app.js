@@ -111,11 +111,9 @@ function handleClick(event) {
 
         
     if (board[squareIndex] !== '' || winner) {                                        //NOTE: THIS LINE CHECKS IF THE MOVE IS VALID. IF THE SQUARE IS ALREADY TAKEN (`board[squareIndex] !== ''`) OR IF THERE IS ALREADY A WINNER (`winner`), THE FUNCTION EXITS AND NOTHING HAPPENS.
-        //console.log(`Invalid move: board[${squareIndex}] = ${board[squareIndex]}, winner = ${winner}`);
         return;                                                             
 }
                                                                                         //NOTE: ????? IF THE MOVE IS VALID (THE SQUARE IS EMPTY AND THERE IS NO WINNER), IT UPDATES THE `board`ARRAY WITH THE CURRENT PLAYER'S SYMBOL AT THE CLICKED SQUARE'S POSITION.
-
     placePiece(squareIndex);                                                            //**STEP 6-1-c: IN THE `handleCLick` FUNCTION, CALL THE placePiece FUNCTION YOU JUST CREATE. PASS `squareIndex` TO IT AS AN ARGUMENT.
     //console.log(board);
 
